@@ -1,0 +1,4 @@
+Bitcoin adalah cryptocurrency pertama di dunia yang diciptakan pada tahun 2009 oleh sosok anonim bernama Satoshi Nakamoto. 
+Sebagai mata uang digital terdesentralisasi, Bitcoin memungkinkan transaksi peer-to-peer tanpa memerlukan perantara seperti bank. 
+Semua transaksi dicatat pada sebuah buku besar digital yang disebut blockchain, yang diamankan menggunakan kriptografi. 
+Teknologi blockchain memastikan bahwa setiap transaksi tidak dapat diubah atau dimanipulasi.

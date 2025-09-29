@@ -1,0 +1,4 @@
+Solana adalah blockchain berkemampuan tinggi yang dirancang untuk memproses hingga 710.000 transaksi per detik, meskipun throughput dunia nyata biasanya berkisar antara 2.000 hingga 3.000 TPS.
+Hal ini dicapai melalui mekanisme pencatatan waktu inovatif bernama Proof of History, yang menciptakan cap waktu yang andal untuk semua transaksi tanpa memerlukan validator untuk menyepakati waktu.
+Bayangkan ini seperti buku besar digital super cepat yang menjaga waktu dengan sempurna, menjadikannya ideal untuk aplikasi terdesentralisasi yang membutuhkan kecepatan dan keandalan.
+Jaringan ini telah menjadi salah satu platform terkemuka untuk DeFi, NFT, dan aplikasi Web3 berkat kecepatan tinggi dan biaya transaksi yang rendah.

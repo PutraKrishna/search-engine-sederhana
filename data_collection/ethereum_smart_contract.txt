@@ -1,0 +1,4 @@
+Ethereum adalah platform blockchain terdesentralisasi yang lebih dari sekadar mata uang digital. 
+Diluncurkan pada tahun 2015 oleh Vitalik Buterin, inovasi utama Ethereum adalah fungsionalitas smart contract. 
+Smart contract adalah program yang berjalan otomatis ketika kondisi tertentu terpenuhi, memungkinkan pembuatan aplikasi terdesentralisasi (dApps) dan layanan keuangan terdesentralisasi (DeFi). 
+Meskipun memiliki cryptocurrency sendiri bernama Ether (ETH), kekuatan utama Ethereum terletak pada platform komputasinya.

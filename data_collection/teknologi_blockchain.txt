@@ -1,0 +1,4 @@
+Blockchain adalah teknologi buku besar terdistribusi (distributed ledger technology) yang menjadi dasar bagi sebagian besar cryptocurrency. 
+Teknologi ini terdiri dari rantai blok-blok, di mana setiap blok berisi sekumpulan data transaksi. 
+Setiap blok terhubung secara kriptografis ke blok sebelumnya menggunakan hash, membentuk sebuah rantai yang sangat aman. 
+Sifatnya yang terdesentralisasi berarti data tidak disimpan di satu tempat, melainkan disalin dan disebar di banyak komputer, membuatnya sangat tahan terhadap peretasan.

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="{{ url_for('static', filename='/css/output.css') }}"
+      rel="stylesheet"
+    />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <title>{{judul}}</title>
+  </head>
+  <body class="bg-zinc-900 font-inter text-zinc-400">
+    <!-- Navbar -->
+    <nav class="w-screen bg-transparent">
+      <h1 class="font-bold text-center text-xl py-5 text-white">TokenVerse</h1>
+    </nav>
+
+    <section class="w-screen h-48 mt-24">
+      <div class="text-center">
+        <h1 class="text-6xl pt-10 font-semibold tracking-tighter text-zinc-50">Pusat <span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Informasi</span> Crypto Anda</h1>
+        <p class="text-lg py-4 tracking-tighter">
+          Dapatkan data real-time, analisis mendalam, dan <br>berita terbaru dari
+          ribuan aset digital dalam satu pencarian cepat. </br>
+        </p>
+      </div>
+    </section>
+    <!-- search bar -->
+    <section class="text-center">
+      <form class="" method="post">
+        <div class="flex items-center w-[800px] mx-auto p-3 border border-zinc-600 rounded-lg focus-within:ring-2 focus-within:ring-indigo-600">
+          
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6 text-zinc-600 mr-3">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+          </svg>
+          
+          <input
+            class="w-full bg-transparent text-zinc-400 placeholder-zinc-600 focus:outline-none"
+            type="text"
+            name="query"
+            stroke="currentColor"
+            placeholder="Search..." />
+            
+        </div>
+      </form>
+    </section>
+    <!-- Buat nampilin file yang dicari -->
+  <section id="search-results" class="space-y-4">
+        {% with query=request.form.get('query', '') %}
+    
+    {% if query %}
+        <h2 class="mt-8 text-2xl font-semibold text-white text-center tracking-tighter">Hasil Pencarian untuk "<span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">{{ query }}</span>"</h2>
+    {% endif %}
+    {% if results %}
+        {% for doc in results %}
+        <div class="flex justify-center tracking-tighter">
+          <article class="bg-zinc-800 text-white rounded-lg border-[1px] border-zinc-600 p-4 w-[800px]">
+              <h3 class="font-bold text-lg bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">{{ doc.filename }}</h3>
+              <p class="mt-2 text-md">
+                  {{ doc.content[:200] }}...
+              </p>
+          </article>
+        </div>
+        {% endfor %}
+    
+    {% elif query %}
+        <div class="bg-slate-800 p-4 rounded-lg shadow text-center">
+            <p class="text-slate-400">Tidak ada hasil yang ditemukan untuk pencarianmu.</p>
+        </div>
+    {% endif %}
+    
+    {% endwith %}
+
+  </section>
+
+  <div class="mt-20 text-center">
+    <h1 class="text-4xl text-white font-semibold tracking-tighter"><span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Tambahkan</span> File Anda</h1>
+    <p class="tracking-tighter">File yang ditambah berupa <span class="bg-zinc-800 text-white px-2 py-[1px] rounded-sm border-[1px] border-zinc-600">.txt, .pdf, dan .doc</span></p>
+  </div>
+
+  <section class="flex justify-center mt-5">
+    <form action="/upload" method="POST" enctype="multipart/form-data" class="flex items-center">
+      <div class="flex items-center justify-center p-3 border border-zinc-600 rounded-lg">
+        <input 
+        type="file" 
+        name="file"
+        class="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-600 file:text-white hover:file:bg-sky-700 file:tracking-tighter">
+        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-md ml-4">
+        Tambah
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <div class="container mx-auto max-w-3xl">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="p-4 mb-4 text-sm rounded-lg
+                    {% if category == 'success' %} bg-green-800 text-green-300
+                    {% else %} bg-red-800 text-red-300 {% endif %}"
+                    role="alert">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+</div>
+
+  </body>
+</html>

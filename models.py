@@ -14,3 +14,7 @@ class InvertedIndex(db.Model):
     term = db.Column(db.String(255), nullable=False, index=True) 
     doc_id = db.Column(db.Integer, db.ForeignKey('document.id'), nullable=False)
     frequency = db.Column(db.Integer, nullable=False)
+class TermInfo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    term = db.Column(db.String(255), unique=True, nullable=False, index=True)
+    doc_count = db.Column(db.Integer, nullable=False)

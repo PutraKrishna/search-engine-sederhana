@@ -1,126 +1,122 @@
-<!DOCTYPE html>
+<DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="{{ url_for('static', filename='/css/output.css') }}"
-      rel="stylesheet"
-    />
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet" />
     <!-- Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <title>{{judul}}</title>
-  </head>
-  <body class="bg-zinc-900 font-inter text-zinc-400">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <title>{{ judul or 'TokenVerse' }}</title>
+</head>
+<body class="bg-zinc-900 font-inter text-zinc-400">
+
     <!-- Navbar -->
-    <nav class="w-screen bg-transparent">
-      <h1 class="font-bold text-center text-xl py-5 text-white">TokenVerse</h1>
+    <!-- PERBAIKAN: Menggunakan w-full, bukan w-screen -->
+    <nav class="w-full bg-transparent">
+        <h1 class="font-bold text-center text-xl py-5 text-white">TokenVerse</h1>
     </nav>
 
-    <section class="w-screen h-48 mt-24">
-      <div class="text-center">
-        <h1 class="text-6xl pt-10 font-semibold tracking-tighter text-zinc-50">Pusat <span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Informasi</span> Crypto Anda</h1>
-        <p class="text-lg py-4 tracking-tighter">
-          Dapatkan data real-time, analisis mendalam, dan <br>berita terbaru dari
-          ribuan aset digital dalam satu pencarian cepat. </br>
-        </p>
-      </div>
-    </section>
-    <!-- search bar -->
-    <section class="text-center">
-      <form class="" method="post">
-        <div class="flex items-center w-[800px] mx-auto p-3 border border-zinc-600 rounded-lg focus-within:ring-2 focus-within:ring-indigo-600">
-          
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            class="size-6 text-zinc-600 mr-3">
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
-          
-          <input
-            class="w-full bg-transparent text-zinc-400 placeholder-zinc-600 focus:outline-none"
-            type="text"
-            name="query"
-            stroke="currentColor"
-            placeholder="Search..." />
-            
-        </div>
-      </form>
-    </section>
-    <!-- Buat nampilin file yang dicari -->
-  <section id="search-results" class="space-y-4">
-        {% with query=request.form.get('query', '') %}
-    
-    {% if query %}
-        <h2 class="mt-8 text-2xl font-semibold text-white text-center tracking-tighter">Hasil Pencarian untuk "<span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">{{ query }}</span>"</h2>
-    {% endif %}
-    {% if results %}
-        {% for doc in results %}
-        <div class="flex justify-center tracking-tighter">
-          <article class="bg-zinc-800 text-white rounded-lg border-[1px] border-zinc-600 p-4 w-[800px]">
-              <h3 class="font-bold text-lg bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">{{ doc.filename }}</h3>
-              <p class="mt-2 text-md">
-                  {{ doc.content[:200] }}...
-              </p>
-          </article>
-        </div>
-        {% endfor %}
-    
-    {% elif query %}
-        <div class="bg-slate-800 p-4 rounded-lg shadow text-center">
-            <p class="text-slate-400">Tidak ada hasil yang ditemukan untuk pencarianmu.</p>
-        </div>
-    {% endif %}
-    
-    {% endwith %}
+    <!-- Best Practice: Bungkus semua konten utama dalam satu container -->
+    <div class="container mx-auto p-4 sm:p-8 max-w-4xl">
 
-  </section>
+        <!-- Flash Message (dipindahkan ke dalam container utama) -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="p-4 mb-8 text-sm rounded-lg
+                        {% if category == 'success' %} bg-green-900/50 border border-green-700 text-green-300
+                        {% elif category == 'warning' %} bg-yellow-900/50 border border-yellow-700 text-yellow-300
+                        {% else %} bg-red-900/50 border border-red-700 text-red-300 {% endif %}"
+                        role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
 
-  <div class="mt-20 text-center">
-    <h1 class="text-4xl text-white font-semibold tracking-tighter"><span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Tambahkan</span> File Anda</h1>
-    <p class="tracking-tighter">File yang ditambah berupa <span class="bg-zinc-800 text-white px-2 py-[1px] rounded-sm border-[1px] border-zinc-600">.txt, .pdf, dan .doc</span></p>
-  </div>
+        <!-- PERBAIKAN: Menggunakan w-full, bukan w-screen -->
+        <section class="w-full text-center mb-12">
+            <h1 class="text-4xl sm:text-6xl pt-10 font-semibold tracking-tighter text-zinc-50">Pusat <span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Informasi</span> Crypto Anda</h1>
+            <p class="text-lg py-4 tracking-tighter">
+                Dapatkan data real-time, analisis mendalam, dan <br>berita terbaru dari ribuan aset digital.
+            </p>
+        </section>
 
-  <section class="flex justify-center mt-5">
-    <form action="/upload" method="POST" enctype="multipart/form-data" class="flex items-center">
-      <div class="flex items-center justify-center p-3 border border-zinc-600 rounded-lg">
-        <input 
-        type="file" 
-        name="file"
-        class="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-600 file:text-white hover:file:bg-sky-700 file:tracking-tighter">
-        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-md ml-4">
-        Tambah
-        </button>
-      </div>
-    </form>
-  </section>
-
-  <div class="container mx-auto max-w-3xl">
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-            {% for category, message in messages %}
-                <div class="p-4 mb-4 text-sm rounded-lg
-                    {% if category == 'success' %} bg-green-800 text-green-300
-                    {% else %} bg-red-800 text-red-300 {% endif %}"
-                    role="alert">
-                    {{ message }}
+        <!-- Search Bar -->
+        <section class="text-center mb-12">
+            <form method="post">
+                <!-- PERBAIKAN: Mengganti w-[800px] dengan w-full dan max-w-3xl agar responsif -->
+                <div class="flex items-center w-full max-w-3xl mx-auto p-3 border border-zinc-600 rounded-lg focus-within:ring-2 focus-within:ring-indigo-600">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-zinc-600 mr-3">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
+                    </svg>
+                    <input class="w-full bg-transparent text-zinc-400 placeholder-zinc-600 focus:outline-none" type="text" name="query" value="{{ query or '' }}" placeholder="Search..." />
                 </div>
-            {% endfor %}
-        {% endif %}
-    {% endwith %}
-</div>
+            </form>
+        </section>
+                <!-- Form Upload -->
+        <section class="text-center">
+            <div class="text-center mb-5">
+                <h1 class="text-4xl text-white font-semibold tracking-tighter"><span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Tambahkan</span> File Anda</h1>
+                <p class="tracking-tighter">File yang ditambah berupa <span class="bg-zinc-800 text-white px-2 py-[1px] rounded-sm border border-zinc-600">.txt, .pdf, dan .doc</span></p>
+            </div>
+            <form action="/upload" method="POST" enctype="multipart/form-data" class="flex justify-center">
+                <div class="flex items-center justify-center p-3 border border-zinc-600 rounded-lg">
+                    <input type="file" name="file" class="block w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-sky-600 file:text-white hover:file:bg-sky-700 file:tracking-tighter">
+                    <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold py-2 px-6 rounded-md ml-4">
+                        Tambah
+                    </button>
+                </div>
+            </form>
+        </section>
 
-  </body>
+        <!-- Hasil Pencarian -->
+        <section id="search-results" class="space-y-4 mt-5 mb-16">
+          {% with query=request.form.get('query', '') %}
+              {% if query and results %}
+                  <h2 class="text-2xl font-semibold text-white text-center tracking-tighter mb-8">Hasil Pencarian untuk "<span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">{{ query }}</span>"</h2>
+              {% endif %}
+              
+              <!-- --- PERUBAHAN DIMULAI DI SINI --- -->
+              {% if results %}
+                  <!-- 1. Loop diubah dari 'doc' menjadi 'result' -->
+                  {% for result in results %}
+                      <div class="flex justify-center tracking-tighter">
+                          <article class="bg-zinc-800 text-white rounded-lg border border-zinc-600 p-4 w-full max-w-3xl">
+                            <!-- PERUBAHAN ADA DI DALAM DIV INI -->
+                            <div class="flex items-center justify-between space-x-4">
+                                
+                                <!-- 1. Judul diberi tahu untuk bisa mengecil dan memotong teksnya -->
+                                <h3 class="font-bold text-lg bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text
+                                          flex-1 min-w-0 overflow-hidden whitespace-nowrap text-ellipsis">
+                                    {{ result.doc.filename }}
+                                </h3>
+                                
+                                <!-- 2. Skor diberi tahu untuk TIDAK PERNAH mengecil -->
+                                <span class="bg-indigo-600/50 border border-indigo-800 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full
+                                          flex-shrink-0">
+                                    Skor: {{ result.score }}
+                                </span>
+                            </div>
+                            <!-- Tidak ada perubahan di bawah sini -->
+                            <p class="mt-2 text-md text-zinc-400">
+                                {{ result.doc.content[:200] }}...
+                            </p>
+                        </article>
+                      </div>
+                  {% endfor %}
+              <!-- --- PERUBAHAN SELESAI DI SINI --- -->
+              {% elif query %}
+                  <div class="bg-zinc-800 p-4 rounded-lg border border-zinc-700 text-center w-full max-w-3xl mx-auto">
+                      <p class="text-zinc-400">Tidak ada hasil yang ditemukan untuk pencarianmu.</p>
+                  </div>
+              {% endif %}
+          {% endwith %}
+      </section>
+
+
+    </div>
+</body>
 </html>

@@ -642,16 +642,8 @@ video {
   height: 1.5rem;
 }
 
-.w-\[800px\] {
-  width: 800px;
-}
-
 .w-full {
   width: 100%;
-}
-
-.w-screen {
-  width: 100vw;
 }
 
 .min-w-0 {

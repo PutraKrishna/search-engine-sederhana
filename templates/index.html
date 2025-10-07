@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -13,15 +13,10 @@
 <body class="bg-zinc-900 font-inter text-zinc-400">
 
     <!-- Navbar -->
-    <!-- PERBAIKAN: Menggunakan w-full, bukan w-screen -->
     <nav class="w-full bg-transparent">
         <h1 class="font-bold text-center text-xl py-5 text-white">TokenVerse</h1>
     </nav>
-
-    <!-- Best Practice: Bungkus semua konten utama dalam satu container -->
     <div class="container mx-auto p-4 sm:p-8 max-w-4xl">
-
-        <!-- Flash Message (dipindahkan ke dalam container utama) -->
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -35,8 +30,6 @@
                 {% endfor %}
             {% endif %}
         {% endwith %}
-
-        <!-- PERBAIKAN: Menggunakan w-full, bukan w-screen -->
         <section class="w-full text-center mb-12">
             <h1 class="text-4xl sm:text-6xl pt-10 font-semibold tracking-tighter text-zinc-50">Pusat <span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">Informasi</span> Crypto Anda</h1>
             <p class="text-lg py-4 tracking-tighter">
@@ -47,7 +40,6 @@
         <!-- Search Bar -->
         <section class="text-center mb-12">
             <form method="post">
-                <!-- PERBAIKAN: Mengganti w-[800px] dengan w-full dan max-w-3xl agar responsif -->
                 <div class="flex items-center w-full max-w-3xl mx-auto p-3 border border-zinc-600 rounded-lg focus-within:ring-2 focus-within:ring-indigo-600">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6 text-zinc-600 mr-3">
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
@@ -78,36 +70,27 @@
               {% if query and results %}
                   <h2 class="text-2xl font-semibold text-white text-center tracking-tighter mb-8">Hasil Pencarian untuk "<span class="bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text">{{ query }}</span>"</h2>
               {% endif %}
-              
-              <!-- --- PERUBAHAN DIMULAI DI SINI --- -->
               {% if results %}
-                  <!-- 1. Loop diubah dari 'doc' menjadi 'result' -->
                   {% for result in results %}
                       <div class="flex justify-center tracking-tighter">
                           <article class="bg-zinc-800 text-white rounded-lg border border-zinc-600 p-4 w-full max-w-3xl">
-                            <!-- PERUBAHAN ADA DI DALAM DIV INI -->
-                            <div class="flex items-center justify-between space-x-4">
-                                
-                                <!-- 1. Judul diberi tahu untuk bisa mengecil dan memotong teksnya -->
+                            <div class="flex items-center justify-between space-x-4">  
                                 <h3 class="font-bold text-lg bg-gradient-to-r from-indigo-600 to-sky-600 text-transparent bg-clip-text
                                           flex-1 min-w-0 overflow-hidden whitespace-nowrap text-ellipsis">
                                     {{ result.doc.filename }}
                                 </h3>
                                 
-                                <!-- 2. Skor diberi tahu untuk TIDAK PERNAH mengecil -->
                                 <span class="bg-indigo-600/50 border border-indigo-800 text-indigo-300 text-xs font-semibold px-2.5 py-0.5 rounded-full
                                           flex-shrink-0">
-                                    Skor: {{ result.score }}
+                                    Score: {{ result.score }}
                                 </span>
                             </div>
-                            <!-- Tidak ada perubahan di bawah sini -->
                             <p class="mt-2 text-md text-zinc-400">
                                 {{ result.doc.content[:200] }}...
                             </p>
                         </article>
                       </div>
                   {% endfor %}
-              <!-- --- PERUBAHAN SELESAI DI SINI --- -->
               {% elif query %}
                   <div class="bg-zinc-800 p-4 rounded-lg border border-zinc-700 text-center w-full max-w-3xl mx-auto">
                       <p class="text-zinc-400">Tidak ada hasil yang ditemukan untuk pencarianmu.</p>

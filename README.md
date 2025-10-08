@@ -1,123 +1,225 @@
-TokenVerse 
-TokenVerse adalah sebuah sistem information retrieval (mesin pencari) yang dibangun menggunakan Python dan Flask. Sistem ini mampu mengindeks koleksi dokumen digital (seperti .txt, .pdf, .docx) dan melakukan pencarian berdasarkan relevansi menggunakan algoritma ranking TF-IDF.
+# 🔍 TokenVerse - Mesin Pencari Dokumen Berbasis TF-IDF
 
-Fitur Utama
-Ranking Berbasis TF-IDF: Hasil pencarian diurutkan berdasarkan skor relevansi yang dihitung dari Term Frequency (TF) dan Inverse Document Frequency (IDF), memberikan hasil yang lebih akurat daripada pencarian berbasis frekuensi sederhana.
+![Status](https://img.shields.io/badge/status-active-success.svg)
+![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
 
-Dukungan Multi-Format: Mampu membaca, mengekstrak teks, dan mengindeks dokumen dalam format .txt, .pdf, dan .docx.
+Sebuah sistem *information retrieval* (mesin pencari) yang dibangun dengan Python & Flask. Sistem ini mampu mengindeks koleksi dokumen digital (.txt, .pdf, .docx) dan melakukan pencarian berdasarkan relevansi menggunakan algoritma ranking TF-IDF dengan dukungan pemrosesan bahasa Indonesia.
 
-Preprocessing Teks Bahasa Indonesia: Melakukan tokenisasi, stopword removal, dan stemming khusus untuk Bahasa Indonesia menggunakan pustaka Sastrawi.
+---
 
-Antarmuka Pengguna Interaktif: UI yang bersih dan responsif dibangun dengan HTML dan Tailwind CSS.
+## ✨ Fitur Utama
 
-Manajemen Data Dinamis: Pengguna dapat mengunggah dokumen baru melalui antarmuka web, yang akan secara otomatis diindeks dan bisa langsung dicari.
+- **🎯 Ranking Cerdas (TF-IDF)** - Algoritma *Term Frequency-Inverse Document Frequency* untuk menghasilkan hasil pencarian yang relevan
+- **📁 Dukungan Multi-Format** - Mendukung dokumen dalam format .txt, .pdf, dan .docx
+- **🇮🇩 Pemrosesan Teks Bahasa Indonesia** - Menggunakan Sastrawi untuk stemming dan stopword removal
+- **💻 Antarmuka Pengguna Interaktif** - UI modern dan responsif dengan Tailwind CSS
+- **📤 Manajemen Data Dinamis** - Fitur upload dokumen langsung dari interface
+- **💾 Penyimpanan Persisten** - Database MySQL untuk menyimpan dokumen dan hasil preprocessing
 
-Penyimpanan Persisten: Menggunakan MySQL untuk menyimpan semua data dokumen dan indeks pencarian.
+---
 
-Arsitektur & Teknologi
-Komponen
+## 🛠️ Tumpukan Teknologi
 
-Teknologi
+| Komponen | Teknologi |
+|:---------|:----------|
+| **Backend** | Python, Flask |
+| **Frontend** | HTML, Tailwind CSS |
+| **Database** | MySQL |
+| **ORM** | Flask-SQLAlchemy |
+| **NLP** | Sastrawi |
+| **File Processing** | PyPDF2, python-docx |
 
-Backend
+---
 
-Python, Flask
+## 📂 Struktur Proyek
 
-Frontend
+```
+tokenverse/
+├── app.py                 # Pusat kendali aplikasi web (Flask routes)
+├── models.py              # Definisi tabel database (SQLAlchemy models)
+├── read_file.py           # Fungsi pembantu (ekstraksi, preprocessing, TF-IDF)
+├── populate_db.py         # Skrip untuk mengisi data awal ke database
+├── requirements.txt       # Daftar dependensi Python
+├── package.json           # Konfigurasi Node.js untuk Tailwind CSS
+├── tailwind.config.js     # Konfigurasi Tailwind CSS
+├── templates/             # Folder berisi file HTML
+│   ├── index.html         # Halaman utama aplikasi
+├── static/                # Folder untuk file statis (CSS, JS, images)
+│   └── css/
+│       └── output.css     # File CSS hasil kompilasi Tailwind
+└── data_collection/       # Folder untuk menyimpan dokumen yang diupload
+```
 
-HTML, Tailwind CSS
+---
 
-Database
+## 🚀 Cara Instalasi dan Menjalankan
 
-MySQL
+### Prasyarat
 
-ORM
+Pastikan Anda sudah menginstal:
+- Python 3.8 atau lebih tinggi
+- Node.js dan npm
+- MySQL Server
 
-Flask-SQLAlchemy
+### 1️⃣ Clone Repositori
 
-NLP
+```bash
+git clone https://github.com/PutraKrishna/search_engine_sederhana.git
+cd search_engine_sederhana
+```
 
-Sastrawi
+### 2️⃣ Setup Backend (Python)
 
-Ekstraksi
+**Buat dan aktifkan virtual environment:**
 
-PyPDF2, python-docx
-
-Struktur Proyek
-/
-├── app.py             # Pusat kendali aplikasi web (Routes & Logika Utama)
-├── models.py          # Definisi "cetak biru" untuk tabel database (SQLAlchemy Models)
-├── utils.py           # Berisi fungsi-fungsi pembantu (ekstraksi teks, preprocessing)
-├── populate_db.py     # Skrip untuk mengisi database dengan data awal
-├── templates/         # Berisi file-file HTML
-├── static/            # Berisi file CSS, JavaScript, dan gambar
-├── koleksi_data/      # Folder default untuk menyimpan dokumen
-├── requirements.txt   # Daftar library Python yang dibutuhkan
-└── package.json       # Daftar library Node.js yang dibutuhkan (untuk Tailwind)
-
-
-Cara Instalasi dan Menjalankan Proyek
-Prasyarat
-Sebelum memulai, pastikan perangkat Anda sudah terinstal:
-
-Git
-
-Python 3.x
-
-Node.js dan npm
-
-Server MySQL
-
-1. Clone Repositori
-git clone [https://github.com/](https://github.com/)[username-anda]/[nama-repositori-anda].git
-cd [nama-repositori-anda]
-
-
-2. Setup Backend (Python)
-Buat dan aktifkan virtual environment, lalu instal semua library yang dibutuhkan.
-
-# Buat virtual environment
+```bash
+# Untuk Linux/Mac
 python3 -m venv venv
-
-# Aktifkan (untuk macOS/Linux)
 source venv/bin/activate
-# Aktifkan (untuk Windows)
-# venv\Scripts\activate
 
-# Instal semua library dari requirements.txt
+# Untuk Windows
+python -m venv venv
+venv\Scripts\activate
+```
+
+**Install dependensi Python:**
+
+```bash
 pip install -r requirements.txt
+```
 
+### 3️⃣ Setup Frontend (Tailwind CSS)
 
-3. Setup Frontend (Tailwind CSS)
-Instal semua dependensi Node.js yang diperlukan.
+**Install dependensi Node.js:**
 
+```bash
 npm install
+```
 
+### 4️⃣ Setup Database
 
-4. Setup Database (MySQL)
-Buka tool database Anda (phpMyAdmin, DBeaver, dll).
+**Buat database MySQL:**
 
-Buat database baru dengan nama db_search_engine dan collation utf8mb4_unicode_ci.
+```sql
+CREATE DATABASE db_search_engine CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+```
 
-Pastikan detail koneksi (user, password, host) sesuai dengan yang ada di app.py atau atur melalui environment variables.
+**Konfigurasi koneksi database:**
 
-Jalankan skrip populate_db.py untuk mengisi database dengan data awal dari folder koleksi_data.
+Edit file `app.py` dan sesuaikan connection string MySQL:
 
-# Pastikan venv sudah aktif
+```python
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://username:password@localhost/tokenverse_db'
+```
+
+**Inisialisasi database dan isi data awal:**
+
+```bash
 python3 populate_db.py
+```
 
+### 5️⃣ Menjalankan Aplikasi
 
-5. Menjalankan Aplikasi
-Anda perlu menjalankan dua proses di dua terminal terpisah.
+**Anda perlu membuka DUA terminal:**
 
-Di Terminal 1 (untuk Frontend):
+**Terminal 1 - Jalankan Tailwind CSS (untuk kompilasi CSS):**
 
-# Jalankan proses build Tailwind CSS
+```bash
 npm run dev
+```
 
+**Terminal 2 - Jalankan Flask Server:**
 
-Di Terminal 2 (untuk Backend):
-
-# Jalankan server Flask
+```bash
 python3 app.py
+```
 
+**Akses aplikasi di browser:**
+
+```
+http://localhost:5000
+```
+
+---
+
+## 📖 Cara Penggunaan
+
+1. **Pencarian Dokumen**: Masukkan kata kunci di kolom pencarian pada halaman utama
+2. **Upload Dokumen Baru**: Gunakan fitur upload untuk menambahkan dokumen baru ke dalam sistem
+3. **Lihat Hasil**: Sistem akan menampilkan dokumen yang relevan berdasarkan skor TF-IDF tertinggi
+
+---
+
+## 🔧 Konfigurasi
+
+Anda dapat mengubah beberapa konfigurasi di file `app.py`:
+
+```python
+# Folder untuk menyimpan file upload
+UPLOAD_FOLDER = 'uploads'
+
+# Maksimal ukuran file upload (16 MB)
+MAX_CONTENT_LENGTH = 16 * 1024 * 1024
+
+# Format file yang diizinkan
+ALLOWED_EXTENSIONS = {'txt', 'pdf', 'docx'}
+```
+
+---
+
+## 🧪 Algoritma TF-IDF
+
+Sistem ini menggunakan algoritma TF-IDF untuk menghitung relevansi dokumen:
+
+- **TF (Term Frequency)**: Frekuensi kemunculan term dalam dokumen
+- **IDF (Inverse Document Frequency)**: Tingkat kepentingan term di seluruh koleksi
+- **Formula**: `TF-IDF = TF × log(N / DF)`
+
+Di mana:
+- `N` = Total jumlah dokumen
+- `DF` = Jumlah dokumen yang mengandung term
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi selalu diterima dengan tangan terbuka! Jika Anda ingin berkontribusi:
+
+1. Fork repositori ini
+2. Buat branch fitur baru (`git checkout -b fitur-baru`)
+3. Commit perubahan Anda (`git commit -m 'Menambahkan fitur baru'`)
+4. Push ke branch (`git push origin fitur-baru`)
+5. Buat Pull Request
+
+---
+
+## 📝 Lisensi
+
+Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Anda bebas menggunakan, memodifikasi, dan mendistribusikan kode ini dengan tetap mencantumkan kredit kepada pembuat asli.
+
+---
+
+## 👨‍💻 Penulis
+
+**Nama Anda**
+- GitHub: [@username](https://github.com/PutraKrishna)
+- Email: putrakrishna932@gamil.com
+
+---
+
+## 🙏 Acknowledgments
+
+- Terima kasih kepada tim [Sastrawi](https://github.com/sastrawi/sastrawi) untuk library stemming bahasa Indonesia
+- Inspirasi dari sistem information retrieval modern
+- Komunitas open source yang luar biasa
+
+---
+
+<div align="center">
+  
+**⭐ Jika proyek ini membantu Anda, jangan lupa untuk memberikan star!**
+
+Made with ❤️ and ☕ in Indonesia
+
+</div>

@@ -83,10 +83,10 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-**Install dependensi Python:**
+**Install Library yang dibutuhkan:**
 
 ```bash
-pip install -r requirements.txt
+pip install Flask Flask-SQLAlchemy PyMySQL Sastrawi PyPDF2 python-docx
 ```
 
 ### 3️⃣ Setup Frontend (Tailwind CSS)
@@ -223,4 +223,5 @@ Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Anda bebas menggunakan,
 Made with ❤️ and ☕ in Indonesia
 
 </div>
+
 

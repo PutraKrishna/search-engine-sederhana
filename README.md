@@ -1,4 +1,4 @@
-# 🔍 TokenVerse - Search Egnien Sederhana
+# 🔍 TokenVerse - Search Engine Sederhana
 
 ![Status](https://img.shields.io/badge/status-active-success.svg)
 ![Python](https://img.shields.io/badge/python-3.8+-blue.svg)
@@ -223,6 +223,7 @@ Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Anda bebas menggunakan,
 Made with ❤️ and ☕ in Indonesia
 
 </div>
+
 
 
 

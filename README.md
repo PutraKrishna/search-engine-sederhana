@@ -203,7 +203,7 @@ Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Anda bebas menggunakan,
 ## 👨‍💻 Penulis
 
 **Nama Anda**
-- GitHub: [@username](https://github.com/PutraKrishna)
+- GitHub: [@PutraKrishna](https://github.com/PutraKrishna)
 - Email: putrakrishna932@gamil.com
 
 ---
@@ -223,5 +223,6 @@ Proyek ini dilisensikan di bawah [Lisensi MIT](LICENSE). Anda bebas menggunakan,
 Made with ❤️ and ☕ in Indonesia
 
 </div>
+
 
 
